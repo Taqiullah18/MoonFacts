@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        #app {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .fact {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .fact:last-child {
+            border-bottom: none;
+        }
+
+        .fact-title {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .fact-description {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Moon Facts</h1>
+        <div id="facts-container"></div>
+    </div>
+    <script>
+        const moonFacts = [
+            {
+                fact_number: 1,
+                title: "Natural Satellite",
+                description: "The Moon is Earth's only natural satellite and is the fifth largest moon in the Solar System."
+            },
+            {
+                fact_number: 2,
+                title: "Distance from Earth",
+                description: "The average distance from the Earth to the Moon is about 384,400 kilometers (238,855 miles)."
+            },
+            {
+                fact_number: 3,
+                title: "Surface Gravity",
+                description: "The Moon's gravity is about 1/6th that of Earth's, which means you would weigh significantly less on the Moon."
+            },
+            {
+                fact_number: 4,
+                title: "Phases",
+                description: "The Moon goes through a cycle of phases approximately every 29.5 days, from new moon to full moon and back."
+            },
+            {
+                fact_number: 5,
+                title: "No Atmosphere",
+                description: "The Moon has a very thin atmosphere called an exosphere, which means it cannot support life as we know it."
+            },
+            {
+                fact_number: 6,
+                title: "Tidal Effects",
+                description: "The gravitational pull of the Moon is responsible for the tides in Earth's oceans."
+            },
+            {
+                fact_number: 7,
+                title: "Formation",
+                description: "The most widely accepted theory is that the Moon formed from the debris left over after a Mars-sized body collided with Earth about 4.5 billion years ago."
+            },
+            {
+                fact_number: 8,
+                title: "Surface Features",
+                description: "The Moon's surface is covered with craters, mountains, and flat plains called maria, which are large, dark basaltic plains formed by ancient volcanic eruptions."
+            },
+            {
+                fact_number: 9,
+                title: "Exploration",
+                description: "The Moon was first visited by humans during NASA's Apollo program, with Apollo 11 being the first mission to land astronauts on the Moon in 1969."
+            },
+            {
+                fact_number: 10,
+                title: "Synchronous Rotation",
+                description: "The Moon is in synchronous rotation with Earth, meaning the same side always faces Earth. This is why we only see one side of the Moon from our planet."
+            }
+        ];
+
+        const factsContainer = document.getElementById('facts-container');
+
+        moonFacts.forEach(fact => {
+            const factElement = document.createElement('div');
+            factElement.classList.add('fact');
+            
+            const titleElement = document.createElement('div');
+            titleElement.classList.add('fact-title');
+            titleElement.textContent = `${fact.fact_number}. ${fact.title}`;
+            
+            const descriptionElement = document.createElement('div');
+            descriptionElement.classList.add('fact-description');
+            descriptionElement.textContent = fact.description;
+            
+            factElement.appendChild(titleElement);
+            factElement.appendChild(descriptionElement);
+            factsContainer.appendChild(factElement);
+        });
+    </script>
+</body>
+</html>
