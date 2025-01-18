@@ -9,62 +9,60 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #2c3e50, #bdc3c7);
-            color: #fff;
+            background-color: #282c34;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
         }
 
         #app {
             max-width: 800px;
-            margin: 20px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background-color: #3b3f47;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
             margin-bottom: 20px;
-            color: #f1c40f;
-        }
-
-        #show-facts-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 20px;
-            margin-bottom: 20px;
-            background-color: #e74c3c;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #show-facts-btn:hover {
-            background-color: #c0392b;
+            color: #61dafb;
         }
 
         .fact {
-            display: none;
             border-bottom: 1px solid #444;
             padding: 10px 0;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            display: none;
+        }
+
+        .fact:last-child {
+            border-bottom: none;
         }
 
         .fact-title {
             font-weight: bold;
-            color: #ecf0f1;
+            color: #61dafb;
         }
 
         .fact-description {
-            color: #bdc3c7;
+            color: #bbbbbb;
+        }
+
+        button {
+            background-color: #61dafb;
+            color: #282c34;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
         }
     </style>
 </head>
@@ -76,16 +74,56 @@
     </div>
     <script>
         const moonFacts = [
-            { fact_number: 1, title: "Natural Satellite", description: "The Moon is Earth's only natural satellite and is the fifth largest moon in the Solar System." },
-            { fact_number: 2, title: "Distance from Earth", description: "The average distance from the Earth to the Moon is about 384,400 kilometers (238,855 miles)." },
-            { fact_number: 3, title: "Surface Gravity", description: "The Moon's gravity is about 1/6th that of Earth's, which means you would weigh significantly less on the Moon." },
-            { fact_number: 4, title: "Phases", description: "The Moon goes through a cycle of phases approximately every 29.5 days, from new moon to full moon and back." },
-            { fact_number: 5, title: "No Atmosphere", description: "The Moon has a very thin atmosphere called an exosphere, which means it cannot support life as we know it." },
-            { fact_number: 6, title: "Tidal Effects", description: "The gravitational pull of the Moon is responsible for the tides in Earth's oceans." },
-            { fact_number: 7, title: "Formation", description: "The most widely accepted theory is that the Moon formed from the debris left over after a Mars-sized body collided with Earth about 4.5 billion years ago." },
-            { fact_number: 8, title: "Surface Features", description: "The Moon's surface is covered with craters, mountains, and flat plains called maria, which are large, dark basaltic plains formed by ancient volcanic eruptions." },
-            { fact_number: 9, title: "Exploration", description: "The Moon was first visited by humans during NASA's Apollo program, with Apollo 11 being the first mission to land astronauts on the Moon in 1969." },
-            { fact_number: 10, title: "Synchronous Rotation", description: "The Moon is in synchronous rotation with Earth, meaning the same side always faces Earth. This is why we only see one side of the Moon from our planet." }
+            {
+                fact_number: 1,
+                title: "Natural Satellite",
+                description: "The Moon is Earth's only natural satellite and is the fifth largest moon in the Solar System."
+            },
+            {
+                fact_number: 2,
+                title: "Distance from Earth",
+                description: "The average distance from the Earth to the Moon is about 384,400 kilometers (238,855 miles)."
+            },
+            {
+                fact_number: 3,
+                title: "Surface Gravity",
+                description: "The Moon's gravity is about 1/6th that of Earth's, which means you would weigh significantly less on the Moon."
+            },
+            {
+                fact_number: 4,
+                title: "Phases",
+                description: "The Moon goes through a cycle of phases approximately every 29.5 days, from new moon to full moon and back."
+            },
+            {
+                fact_number: 5,
+                title: "No Atmosphere",
+                description: "The Moon has a very thin atmosphere called an exosphere, which means it cannot support life as we know it."
+            },
+            {
+                fact_number: 6,
+                title: "Tidal Effects",
+                description: "The gravitational pull of the Moon is responsible for the tides in Earth's oceans."
+            },
+            {
+                fact_number: 7,
+                title: "Formation",
+                description: "The most widely accepted theory is that the Moon formed from the debris left over after a Mars-sized body collided with Earth about 4.5 billion years ago."
+            },
+            {
+                fact_number: 8,
+                title: "Surface Features",
+                description: "The Moon's surface is covered with craters, mountains, and flat plains called maria, which are large, dark basaltic plains formed by ancient volcanic eruptions."
+            },
+            {
+                fact_number: 9,
+                title: "Exploration",
+                description: "The Moon was first visited by humans during NASA's Apollo program, with Apollo 11 being the first mission to land astronauts on the Moon in 1969."
+            },
+            {
+                fact_number: 10,
+                title: "Synchronous Rotation",
+                description: "The Moon is in synchronous rotation with Earth, meaning the same side always faces Earth. This is why we only see one side of the Moon from our planet."
+            }
         ];
 
         const factsContainer = document.getElementById('facts-container');
@@ -109,13 +147,8 @@
         });
 
         showFactsBtn.addEventListener('click', () => {
-            const facts = document.querySelectorAll('.fact');
-            facts.forEach((fact, index) => {
-                setTimeout(() => {
-                    fact.style.display = 'block';
-                    fact.style.opacity = '1';
-                    fact.style.transform = 'translateY(0)';
-                }, index * 100);
+            document.querySelectorAll('.fact').forEach(fact => {
+                fact.style.display = 'block';
             });
             showFactsBtn.style.display = 'none';
         });
