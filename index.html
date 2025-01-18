@@ -9,8 +9,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a2e;
-            color: #eaeaea;
+            background-color: #282c34;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,56 +18,140 @@
         }
 
         #app {
-            max-width: 600px;
+            max-width: 800px;
             padding: 20px;
-            background-color: #16213e;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: #3b3f47;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
         h1 {
             margin-bottom: 20px;
-            color: #e94560;
+            color: #61dafb;
         }
 
         .fact {
+            border-bottom: 1px solid #444;
+            padding: 10px 0;
             display: none;
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #0f3460;
-            border-radius: 5px;
-            transition: all 0.3s ease-in-out;
+        }
+
+        .fact:last-child {
+            border-bottom: none;
         }
 
         .fact-title {
             font-weight: bold;
-            color: #e94560;
+            color: #61dafb;
         }
 
         .fact-description {
-            color: #eaeaea;
+            color: #bbbbbb;
         }
 
-        .show-facts-btn {
-            padding: 10px 20px;
-            background-color: #e94560;
-            color: #fff;
+        button {
+            background-color: #61dafb;
+            color: #282c34;
             border: none;
+            padding: 10px 20px;
+            font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
 
-        .show-facts-btn:hover {
-            background-color: #d63447;
+        button:hover {
+            background-color: #21a1f1;
         }
     </style>
 </head>
 <body>
     <div id="app">
         <h1>Moon Facts</h1>
-        <button class="show-facts-btn" onclick="toggleFacts()">Show Facts</button>
+        <button id="show-facts-btn">Show Facts</button>
         <div id="facts-container"></div>
     </div>
     <script>
+        const moonFacts = [
+            {
+                fact_number: 1,
+                title: "Natural Satellite",
+                description: "The Moon is Earth's only natural satellite and is the fifth largest moon in the Solar System."
+            },
+            {
+                fact_number: 2,
+                title: "Distance from Earth",
+                description: "The average distance from the Earth to the Moon is about 384,400 kilometers (238,855 miles)."
+            },
+            {
+                fact_number: 3,
+                title: "Surface Gravity",
+                description: "The Moon's gravity is about 1/6th that of Earth's, which means you would weigh significantly less on the Moon."
+            },
+            {
+                fact_number: 4,
+                title: "Phases",
+                description: "The Moon goes through a cycle of phases approximately every 29.5 days, from new moon to full moon and back."
+            },
+            {
+                fact_number: 5,
+                title: "No Atmosphere",
+                description: "The Moon has a very thin atmosphere called an exosphere, which means it cannot support life as we know it."
+            },
+            {
+                fact_number: 6,
+                title: "Tidal Effects",
+                description: "The gravitational pull of the Moon is responsible for the tides in Earth's oceans."
+            },
+            {
+                fact_number: 7,
+                title: "Formation",
+                description: "The most widely accepted theory is that the Moon formed from the debris left over after a Mars-sized body collided with Earth about 4.5 billion years ago."
+            },
+            {
+                fact_number: 8,
+                title: "Surface Features",
+                description: "The Moon's surface is covered with craters, mountains, and flat plains called maria, which are large, dark basaltic plains formed by ancient volcanic eruptions."
+            },
+            {
+                fact_number: 9,
+                title: "Exploration",
+                description: "The Moon was first visited by humans during NASA's Apollo program, with Apollo 11 being the first mission to land astronauts on the Moon in 1969."
+            },
+            {
+                fact_number: 10,
+                title: "Synchronous Rotation",
+                description: "The Moon is in synchronous rotation with Earth, meaning the same side always faces Earth. This is why we only see one side of the Moon from our planet."
+            }
+        ];
+
+        const factsContainer = document.getElementById('facts-container');
+        const showFactsBtn = document.getElementById('show-facts-btn');
+
+        moonFacts.forEach(fact => {
+            const factElement = document.createElement('div');
+            factElement.classList.add('fact');
+            
+            const titleElement = document.createElement('div');
+            titleElement.classList.add('fact-title');
+            titleElement.textContent = `${fact.fact_number}. ${fact.title}`;
+            
+            const descriptionElement = document.createElement('div');
+            descriptionElement.classList.add('fact-description');
+            descriptionElement.textContent = fact.description;
+            
+            factElement.appendChild(titleElement);
+            factElement.appendChild(descriptionElement);
+            factsContainer.appendChild(factElement);
+        });
+
+        showFactsBtn.addEventListener('click', () => {
+            document.querySelectorAll('.fact').forEach(fact => {
+                fact.style.display = 'block';
+            });
+            showFactsBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
